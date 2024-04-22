@@ -114,9 +114,6 @@
         <psi.referenceContributor language="JSON" implementation="com.github.iguissouma.nxconsole.references.NxProjectJsonReferenceContributor"/>
         <completion.contributor language="JSON" implementationClass="com.github.iguissouma.nxconsole.completions.NxProjetJsonCompletionContributor" order="first" />
 
-        <pluginReplacement implementation="com.github.iguissouma.nxconsole.deprecation.NxConsolePluginReplacement"/>
-        <postStartupActivity implementation="com.github.iguissouma.nxconsole.deprecation.ShowDeprecationNoticeStartupActivity"/>
-
     </extensions>
 
     <extensions defaultExtensionNs="JavaScript">
@@ -216,18 +213,7 @@
                           relative-to-action="OpenModuleSettings"/>
         </action>
 
-        <!--<action id="NxFocusOnAppOrLibDialog" class="com.github.iguissouma.nxconsole.actions.NxManageAppsAndLibsDialogAction">
-        </action>-->
-
         <action id="NxMigrateWorkspaceAction" class="com.github.iguissouma.nxconsole.actions.NxMigrateWorkspaceAction">
-        </action>
-
-        <action class="com.github.iguissouma.nxconsole.uml.ShowNxGraphNewDiagramAction"
-                id="ShowNxGraphNewDiagram"
-                text="Show Nx Graph Dependency Diagram"
-                icon="AllIcons.FileTypes.Diagram">
-            >
-            <add-to-group group-id="UML.EditorGroup"/>
         </action>
 
 

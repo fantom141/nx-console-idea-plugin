@@ -31,7 +31,6 @@ class NxDevToolsView(val myProject: Project) {
     var myNodeInterpreterField: NodeJsInterpreterField? = null
     var myNxPackageField: NodePackageField? = null
     var myNxJsonField: TextFieldWithBrowseButton? = null
-    var myPackagesView: NxDevToolsPackagesView? = null
     var myNormalForeground: Color? = null
     var myAllowUpdates = false
 
@@ -42,7 +41,6 @@ class NxDevToolsView(val myProject: Project) {
             NodePackageField(myNodeInterpreterField!!, NxDevToolsSettingsManager.PKG_DESCRIPTOR, null)
         this.myNxJsonField = createNxJsonField(myProject)
 
-        myPackagesView = NxDevToolsPackagesView(myProject)
         myNormalForeground = (this.myNxJsonField?.childComponent as JTextField).foreground
         val panel: JPanel = FormBuilder.createFormBuilder().setAlignLabelOnRight(true)
             .addLabeledComponent(
@@ -56,7 +54,6 @@ class NxDevToolsView(val myProject: Project) {
         myNodeInterpreterField!!.addChangeListener { newInterpreter: NodeJsInterpreter? -> this.updateLaterIfAllowed() }
         myNxPackageField!!.addSelectionListener { pkg: NodePackage? -> this.updateLaterIfAllowed() }
         this.listenForChanges(this.myNxJsonField?.childComponent as JTextComponent)
-        myComponent = createResult(panel, myPackagesView!!.getComponent())
     }
 
     private fun listenForChanges(textComponent: JTextComponent) {
@@ -89,13 +86,6 @@ class NxDevToolsView(val myProject: Project) {
             this.myNxPackage = myNxPackageField?.selected
             this.myNxJsonPath = PathShortener.getAbsolutePath(myNxJsonField?.textField!!)
         }
-
-        val validationInfos: List<NxValidationInfo> = validate()
-        myPackagesView!!.onSettingsChanged(nxDevToolsSettings, validationInfos)
-    }
-
-    private fun validate(): List<NxValidationInfo> {
-        return emptyList<NxValidationInfo>()
     }
 
     private fun createNxJsonField(project: Project): TextFieldWithBrowseButton? {
@@ -109,13 +99,6 @@ class NxDevToolsView(val myProject: Project) {
         PathShortener.enablePathShortening(textFieldWithBrowseButton.textField, null as JTextField?)
 
         return textFieldWithBrowseButton
-    }
-
-    private fun createResult(top: JComponent, bottom: JComponent): JPanel? {
-        val panel = JPanel(GridBagLayout())
-        panel.add(top, GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, 18, 2, JBUI.emptyInsets(), 0, 0))
-        panel.add(bottom, GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, 18, 1, JBUI.emptyInsets(), 0, 0))
-        return panel
     }
 
     fun setSettings(settings: NxDevToolsSettings) {

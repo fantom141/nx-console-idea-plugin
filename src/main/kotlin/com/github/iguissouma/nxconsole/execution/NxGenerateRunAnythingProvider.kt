@@ -5,7 +5,6 @@ import com.github.iguissouma.nxconsole.actions.wildcardToRegex
 import com.github.iguissouma.nxconsole.cli.NxCliFilter
 import com.github.iguissouma.nxconsole.cli.config.NxConfigProvider
 import com.github.iguissouma.nxconsole.cli.config.exe
-import com.github.iguissouma.nxconsole.execution.ui.NxGenerateUiPanel
 import com.github.iguissouma.nxconsole.schematics.NxCliSchematicsRegistryService
 import com.github.iguissouma.nxconsole.schematics.Schematic
 import com.intellij.execution.executors.DefaultDebugExecutor
@@ -95,17 +94,6 @@ class NxGenerateRunAnythingProvider : RunAnythingCommandLineProvider() {
                 "generate",
                 *args.toTypedArray()
             )
-        } else {
-            val schematic = hasSchematic(context, commandLine)
-            if (schematic != null) {
-                val vFile = DefaultNxUiFile("Generate.nx", NxGenerateUiPanel(project, schematic, args))
-                // close file if isOpened to display another schematic
-                val fem = FileEditorManager.getInstance(project)
-                if (fem.isFileOpen(vFile)) {
-                    fem.closeFile(vFile)
-                }
-                fem.openFile(vFile, true)
-            }
         }
 
         return true

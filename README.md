@@ -3,13 +3,6 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/com.github.iguissouma.nxconsole.svg)](https://plugins.jetbrains.com/plugin/15101-nx-console-idea)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.iguissouma.nxconsole.svg)](https://plugins.jetbrains.com/plugin/15101-nx-console-idea)
 
-
-> [!IMPORTANT]
-> Nx Console Idea is no longer actively maintained. Please switch to the official 'Nx Console' plugin maintained by the Nx team with the help of @iguissouma.
-> You can find it here:
-> - [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/21060-nx-console)
-> - [GitHub](https://github.com/nrwl/nx-console)
-
 <!-- Plugin description -->
 
 This plugin will add support for projects using [Nx](https://nx.dev/) dev tools. 
